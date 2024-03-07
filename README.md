@@ -29,4 +29,4 @@ To clone the repo to your personal machine please do the following:
 If you are using Expo you can scan the QR code that your terminal shows to open the app or the Xcode emulator should show you the mobile screen on your computer.
 
 You should see this on your screen:-
-![Screenshot](frontend/assets/Screenshot 7mar24.jpg)
+![Screenshot](https://github.com/More-E64-Projects/as-the-crow-flies/blob/development/frontend/assets/Screenshot%207mar24.jpg)
