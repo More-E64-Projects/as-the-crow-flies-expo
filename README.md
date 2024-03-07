@@ -20,7 +20,7 @@ You will need to download either Xcode for MacOs or if you are happy to use your
 To clone the repo to your personal machine please do the following:
 
 - create a folder where you want to project to be saved.
-- copy the HTTPS or SHH link then
+- copy the HTTPS or SSH link then
 - `git clone` 'url'
 - then `cd frontend`
 - type `npm i` to install all the dependancies
