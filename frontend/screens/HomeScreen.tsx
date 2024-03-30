@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 // import { SafeAreaView } from 'react-native-safe-area-context';
 // import { AppContext } from '../AppContext';
 
-const globeImage = require("/Users/user/react_native/moreE64Projects/asTheCrowFliesExpo/as-the-crow-flies-expo/frontend/assets/f.gif");
+const globeImage = require("../assets/f.gif");
 
 export default function HomeScreen() {
 
