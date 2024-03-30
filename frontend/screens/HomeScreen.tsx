@@ -63,12 +63,12 @@ export default function HomeScreen() {
     },
     buttonWrapperSettings: {
       backgroundColor: 'blue',
-      borderRadius: 40,
+      borderRadius: 10,
       overflow: 'hidden', 
     },
     buttonWrapperPlay: {
       backgroundColor: 'blue',
-      borderRadius: 40,
+      borderRadius: 10,
       overflow: 'hidden', 
     },
     image: {
