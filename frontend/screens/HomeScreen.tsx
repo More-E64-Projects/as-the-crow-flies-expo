@@ -1,8 +1,5 @@
-// import React, { useContext } from 'react';
-import { Text, StyleSheet, View, Pressable, Button, Image, ImageBackground} from 'react-native';
+import { Text, StyleSheet, View, Button, Image, ImageBackground} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-// import { SafeAreaView } from 'react-native-safe-area-context';
-// import { AppContext } from '../AppContext';
 
 const globeImage = require("../assets/f.gif");
 const backgroundImage = require("../assets/stars_background.jpg");
@@ -23,19 +20,20 @@ export default function HomeScreen() {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <View style={styles.buttonWrapperSettings}>
-            <Button title='Settings' color= {"white"} onPress={handleSettingsPress}/>
+          <View style={styles.buttonWrapper}>
+            <Button title="⚙️" color='white' onPress={handleSettingsPress}/>
           </View>    
         </View>
+
         <ImageBackground source={backgroundImage} style={styles.backgroundImage} resizeMode="cover">
-            <View style={styles.content}>
-              <Text style={styles.textTitle}>As The Crow Flies</Text>
-              <Image style={styles.image} source={globeImage}/>
-              <View style={styles.buttonWrapperPlay}>
-                <Button  title="Play game" color= {"white"} onPress={handleGamePress} />
-              </View>
+          <View style={styles.content}>
+            <Text style={styles.textTitle}>As The Crow Flies</Text>
+            <Image style={styles.image} source={globeImage}/>
+            <View style={styles.buttonWrapper}>
+              <Button title="< Play Game >" color='white' onPress={handleGamePress} />
             </View>
-            </ImageBackground>
+          </View>
+        </ImageBackground>
       </View>
     );
   }
@@ -61,13 +59,8 @@ export default function HomeScreen() {
       justifyContent: 'center',
       marginTop: 50,
     },
-    buttonWrapperSettings: {
-      backgroundColor: 'blue',
-      borderRadius: 10,
-      overflow: 'hidden', 
-    },
-    buttonWrapperPlay: {
-      backgroundColor: 'blue',
+    buttonWrapper: {
+      backgroundColor: '#015a7d',
       borderRadius: 10,
       overflow: 'hidden', 
     },
@@ -86,5 +79,6 @@ export default function HomeScreen() {
       fontSize: 35,
       fontStyle: 'italic',
       color: "white",
+      fontWeight: 'bold',
     },
     });
