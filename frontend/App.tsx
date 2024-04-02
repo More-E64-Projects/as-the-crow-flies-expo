@@ -26,4 +26,8 @@ function App() {
 
 export default App;
 
+<<<<<<< HEAD
 //another wee comment
+=======
+
+>>>>>>> development
