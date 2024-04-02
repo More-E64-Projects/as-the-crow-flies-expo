@@ -5,6 +5,7 @@ import { AppProvider } from './AppContext';
 import GameScreen from './screens/GameScreen';
 import PauseScreen from './screens/PauseScreen';
 import HomeScreen from './screens/HomeScreen';
+import SettingsScreen from './screens/SettingsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +18,7 @@ function App() {
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Game" component={GameScreen} />
           <Stack.Screen name="Pause" component={PauseScreen} />
-
+          <Stack.Screen name="Settings" component={SettingsScreen}/>
         </Stack.Navigator>
       </NavigationContainer>
     </AppProvider>

@@ -13,8 +13,7 @@ export default function HomeScreen() {
     };
 
     const handleSettingsPress = () => {
-      // navigation.navigate('Settings' as never);
-      console.log("Settings pressed"); //just until settings screen has been built
+      navigation.navigate('Settings' as never);
     };
 
     return (
