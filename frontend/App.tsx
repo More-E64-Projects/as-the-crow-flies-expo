@@ -17,7 +17,7 @@ function App() {
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Game" component={GameScreen} />
           <Stack.Screen name="Pause" component={PauseScreen} />
-          
+
         </Stack.Navigator>
       </NavigationContainer>
     </AppProvider>
@@ -25,3 +25,6 @@ function App() {
 }
 
 export default App;
+
+
+//a little comment to test pushing branch
