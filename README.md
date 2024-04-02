@@ -31,3 +31,5 @@ If you are using Expo you can scan the QR code that your terminal shows to open 
 You should see this on your screen:-
 
 <img src='https://github.com/More-E64-Projects/as-the-crow-flies/blob/development/frontend/assets/Screenshot%207mar24.jpg' width="40%">
+
+Testing the branch protection rules.
