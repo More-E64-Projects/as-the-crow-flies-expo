@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import MapView, { LatLng, Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { StyleSheet, SafeAreaView, View, Text, Button } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
+import { useNavigation } from "@react-navigation/native";
 
 function SettingsScreen(props) {
   const [difficultyLevel, setDifficultyLevel] = useState("medium");
   const [startingLocation, setStartingLocation] = useState("here");
+
+  const navigation = useNavigation();
+
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -40,7 +46,7 @@ function SettingsScreen(props) {
             ]}
           />
         </View>
-        <Button title="Back"></Button>
+        <Button title="Back" onPress={handleBackPress}></Button>
       </View>
     </SafeAreaView>
   );
@@ -49,12 +55,12 @@ function SettingsScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "lightblue"
+    backgroundColor: "lightblue",
   },
   logoContainer: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   logo: {
     fontSize: 150,
@@ -67,12 +73,12 @@ const styles = StyleSheet.create({
   },
   headingText: {
     fontSize: 50,
-    color: "white"
+    color: "white",
   },
   text: {
     fontSize: 25,
-    color: "white"
-  }
+    color: "white",
+  },
 });
 
 export default SettingsScreen;
