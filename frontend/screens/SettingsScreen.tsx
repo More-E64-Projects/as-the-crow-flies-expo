@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { StyleSheet, SafeAreaView, View, Text, Button } from "react-native";
+import { SafeAreaView, View, Text, Pressable } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import { useNavigation } from "@react-navigation/native";
+import styles from "../styles/styles";
 
-function SettingsScreen(props) {
+function SettingsScreen() {
   const [difficultyLevel, setDifficultyLevel] = useState("medium");
   const [startingLocation, setStartingLocation] = useState("here");
 
@@ -46,38 +47,12 @@ function SettingsScreen(props) {
             ]}
           />
         </View>
-        <Button title="Back" onPress={handleBackPress}></Button>
+        <Pressable style={styles.button} onPress={handleBackPress}>
+          <Text style={styles.text}>Back</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "lightblue",
-  },
-  logoContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  logo: {
-    fontSize: 150,
-  },
-  formContainer: {
-    flex: 2,
-    alignItems: "center",
-    justifyContent: "space-around",
-  },
-  headingText: {
-    fontSize: 50,
-    color: "white",
-  },
-  text: {
-    fontSize: 25,
-    color: "white",
-  },
-});
 
 export default SettingsScreen;
