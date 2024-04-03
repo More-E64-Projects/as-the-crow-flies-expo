@@ -26,6 +26,7 @@ export default function HomeScreen() {
 
         <ImageBackground source={backgroundImage} style={styles.backgroundImage} resizeMode="cover">
           <View style={styles.content}>
+            <Text style={styles.textName}>Welcome, Player</Text>
             <Text style={styles.textTitle}>As The Crow Flies</Text>
             <Image style={styles.image} source={globeImage}/>
             <View style={styles.buttonWrapper}>
@@ -80,4 +81,12 @@ export default function HomeScreen() {
       color: "white",
       fontWeight: 'bold',
     },
+    textName : {
+      fontSize: 15,
+      fontStyle: 'normal',
+      color: "white",
+      fontWeight: 'bold',
+      padding: 10,
+      marginTop:40,
+    }
     });
