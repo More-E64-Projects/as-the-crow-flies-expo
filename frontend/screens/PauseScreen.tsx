@@ -14,13 +14,16 @@ export default function PauseScreen() {
     const handleGamePress = () => {
         navigation.navigate('Game' as never);
     };
+    const handleSettingsPress = () => {
+        navigation.navigate('Settings' as never);
+    };
     const handleQuitPress = () => {
         navigation.navigate('Home' as never);
     };
 
     const buttons = [
         { text: 'Resume', color: '#158d43', onPress: handleGamePress },
-        { text: 'Settings', color: '#70d3eb', onPress: () => console.log('Settings pressed') },
+        { text: 'Settings', color: '#70d3eb', onPress: handleSettingsPress },
         { text: 'Quit', color: '#be9767', onPress: handleQuitPress },
     ];
 
