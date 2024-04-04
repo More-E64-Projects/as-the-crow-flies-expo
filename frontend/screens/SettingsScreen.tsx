@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, SafeAreaView, View, Text, Button } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import { useNavigation } from "@react-navigation/native";
+import { AppContext } from "../AppContext";
 
 function SettingsScreen() {
   const [difficultyLevel, setDifficultyLevel] = useState("medium");
@@ -13,6 +14,13 @@ function SettingsScreen() {
     navigation.goBack();
   };
 
+  const contextValue = useContext(AppContext);
+    if (!contextValue) {
+        // Handle the case where contextValue is null
+        return null; // or some default behavior
+    }
+    const { userName, setUserName } = contextValue;
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.logoContainer}>
@@ -20,6 +28,7 @@ function SettingsScreen() {
       </View>
       <View style={styles.formContainer}>
         <Text style={styles.headingText}>Settings</Text>
+        <Text style={styles.text}>Player: {userName}</Text>
         <View>
           <Text style={styles.text}>Difficulty Level</Text>
           <RNPickerSelect

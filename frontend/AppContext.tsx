@@ -26,7 +26,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const [currentLevel, setCurrentLevel] = useState(edinburghLandmarks);
     const [targetName, setTargetName] = useState("");
     const [userName, setUserName] = useState(""); 
-    console.log("AppContext  - ", userName)
+    // console.log("AppContext  - ", userName)
 
 
     const state: StateObject = {
