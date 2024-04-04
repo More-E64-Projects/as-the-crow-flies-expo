@@ -1,5 +1,6 @@
 import { Text, StyleSheet, View, Button, Image, ImageBackground} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import NameInput from '../NameInput';
 
 const globeImage = require("../assets/f.gif");
 const backgroundImage = require("../assets/stars_background.jpg");
@@ -19,7 +20,6 @@ export default function HomeScreen() {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-        <Text style={styles.textName}>Welcome, Player</Text>
           <View style={styles.buttonWrapper}>
             <Button title="⚙️" color='white' onPress={handleSettingsPress}/>
           </View>    
@@ -28,6 +28,7 @@ export default function HomeScreen() {
         <ImageBackground source={backgroundImage} style={styles.backgroundImage} resizeMode="cover">
           <View style={styles.content}>
             <Text style={styles.textTitle}>As The Crow Flies</Text>
+            <NameInput />
             <Image style={styles.image} source={globeImage}/>
             <View style={styles.buttonWrapper}>
               <Button title="< Play Game >" color='white' onPress={handleGamePress} />
@@ -43,13 +44,9 @@ export default function HomeScreen() {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      
     },
     header: {
       position: 'absolute',
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
       top: 10,
       right: 10,
       padding: 10,
@@ -85,12 +82,4 @@ export default function HomeScreen() {
       color: "white",
       fontWeight: 'bold',
     },
-    textName : {
-      fontSize: 15,
-      fontStyle: 'normal',
-      color: "white",
-      fontWeight: 'bold',
-      padding:10,
-  
-    }
     });

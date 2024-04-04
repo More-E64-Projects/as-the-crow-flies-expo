@@ -3,7 +3,7 @@ import { StyleSheet, SafeAreaView, View, Text, Button } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import { useNavigation } from "@react-navigation/native";
 
-function SettingsScreen(props) {
+function SettingsScreen() {
   const [difficultyLevel, setDifficultyLevel] = useState("medium");
   const [startingLocation, setStartingLocation] = useState("here");
 
