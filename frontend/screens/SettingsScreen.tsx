@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { SafeAreaView, View, Text, Pressable } from "react-native";
-import RNPickerSelect from "react-native-picker-select";
+import { SafeAreaView, View, Text, Pressable, Modal } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../styles/styles";
 
 function SettingsScreen() {
   const [difficultyLevel, setDifficultyLevel] = useState("medium");
-  const [startingLocation, setStartingLocation] = useState("here");
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const navigation = useNavigation();
 
@@ -22,34 +22,65 @@ function SettingsScreen() {
       <View style={styles.formContainer}>
         <Text style={styles.headingText}>Settings</Text>
         <View>
-          <Text style={styles.text}>Difficulty Level</Text>
-          <RNPickerSelect
-            value={difficultyLevel}
-            placeholder={{ label: "- Choose a difficulty level -" }}
-            onValueChange={(value, itemIndex) => setDifficultyLevel(value)}
-            items={[
-              { label: "Easy", value: "easy" },
-              { label: "Medium", value: "medium" },
-              { label: "Hard", value: "hard" },
-            ]}
-          />
+          <Text style={styles.text}>Player Name</Text>
+          <Text>Your Name Here</Text>
         </View>
         <View>
-          <Text style={styles.text}>Starting Location</Text>
-          <RNPickerSelect
-            value={startingLocation}
-            placeholder={{ label: "- Choose a starting location -" }}
-            onValueChange={(value, itemIndex) => setStartingLocation(value)}
-            items={[
-              { label: "Here", value: "here" },
-              { label: "There", value: "there" },
-              { label: "Anywhere", value: "anywhere" },
-            ]}
-          />
+          <Text style={styles.text}>Difficulty Level</Text>
+          <Text style={styles.text}>{difficultyLevel}</Text>
+          <Pressable
+            style={styles.button}
+            onPress={() => setModalVisible(true)}
+          >
+            <Text style={styles.text}>Change</Text>
+          </Pressable>
         </View>
         <Pressable style={styles.button} onPress={handleBackPress}>
           <Text style={styles.text}>Back</Text>
         </Pressable>
+      </View>
+
+      <View style={styles.container}>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.modalBackground}>
+            <View style={styles.modalWindow}>
+              <Text style={styles.text}>Difficulty Level:</Text>
+              <View style={{ flexDirection: "row" }}>
+                <Pressable
+                  style={styles.button}
+                  onPress={() => setDifficultyLevel("easy")}
+                >
+                  <Text style={styles.text}>Easy</Text>
+                </Pressable>
+                <Pressable
+                  style={styles.button}
+                  onPress={() => setDifficultyLevel("medium")}
+                >
+                  <Text style={styles.text}>Medium</Text>
+                </Pressable>
+                <Pressable
+                  style={styles.button}
+                  onPress={() => setDifficultyLevel("hard")}
+                >
+                  <Text style={styles.text}>Hard</Text>
+                </Pressable>
+              </View>
+              <Pressable
+                style={styles.button}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.text}>Close</Text>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
       </View>
     </SafeAreaView>
   );

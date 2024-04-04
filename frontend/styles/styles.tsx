@@ -34,6 +34,17 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     padding: 10,
   },
+  modalBackground: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalWindow: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "lightblue",
+    borderRadius: 10,
+  },
 });
 
 export default styles;
