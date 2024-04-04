@@ -7,7 +7,7 @@ export default function NameInput () {
     const contextValue = useContext(AppContext);
     if (!contextValue) {
         // Handle the case where contextValue is null
-        return null; // or some default behavior
+        return null; // or some default behaviour
     }
     const { userName, setUserName } = contextValue;
     const [inputName, setInputName] = useState("");
@@ -15,8 +15,8 @@ export default function NameInput () {
     const handleNameChange = (name: string) => {
         setInputName(name);
         setUserName(name); 
-        console.log("NameIput comp - ", name)
-    };
+        console.log("NameInput comp - ", name)
+    }; //need someway to save the name when the game is lost!
 
     return (
         <TextInput 

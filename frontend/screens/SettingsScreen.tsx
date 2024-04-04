@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { StyleSheet, SafeAreaView, View, Text, Button } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import { useNavigation } from "@react-navigation/native";
-import { AppContext } from "../AppContext";
+import { AppContext } from "../AppContext"; //for userName
 
 function SettingsScreen() {
   const [difficultyLevel, setDifficultyLevel] = useState("medium");
@@ -16,10 +16,10 @@ function SettingsScreen() {
 
   const contextValue = useContext(AppContext);
     if (!contextValue) {
-        // Handle the case where contextValue is null
-        return null; // or some default behavior
+        return null;
     }
-    const { userName, setUserName } = contextValue;
+  const { userName, setUserName } = contextValue;
+  //need someway to save the name when the game is lost!
 
   return (
     <SafeAreaView style={styles.container}>
