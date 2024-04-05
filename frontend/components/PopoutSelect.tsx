@@ -39,7 +39,7 @@ export default function PopoutSelect({
       <Modal visible={modalVisible} animationType={"fade"} transparent={true}>
         <View style={styles.modalBackground}>
           <View style={styles.modalWindow}>
-            <Text style={styles.subheading}>{property}</Text>
+            <Text style={[styles.text, styles.subheading]}>{property}</Text>
             <Text style={styles.text}>{stateObject}</Text>
             <View style={styles.buttonGroup}>{pressables}</View>
             <View>

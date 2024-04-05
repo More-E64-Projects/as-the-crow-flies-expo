@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     color: "hsla(215, 100%, 30%, 1.0)",
+    fontFamily: "Comfortaa"
   },
   settingContainer: {
     flex: 1,
@@ -43,17 +44,20 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     padding: 10,
     margin: 10,
+    elevation: 5,
   },
   modalBackground: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "clear",
   },
   modalWindow: {
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "lightblue",
     borderRadius: 10,
+    elevation: 5,
   },
 });
 
