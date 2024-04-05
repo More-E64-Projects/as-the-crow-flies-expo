@@ -6,8 +6,6 @@ import styles from "../styles/styles";
 function SettingsScreen() {
   const [difficultyLevel, setDifficultyLevel] = useState("medium");
 
-  const [modalVisible, setModalVisible] = useState(false);
-
   const navigation = useNavigation();
 
   const handleBackPress = () => {
@@ -20,67 +18,45 @@ function SettingsScreen() {
         <Text style={styles.logo}>🌍</Text>
       </View>
       <View style={styles.formContainer}>
-        <Text style={styles.headingText}>Settings</Text>
-        <View>
-          <Text style={styles.text}>Player Name</Text>
-          <Text>Your Name Here</Text>
+        <Text style={[styles.text, styles.heading]}>Settings</Text>
+
+        <View style={styles.settingContainer}>
+          <Text style={[styles.text, styles.subheading]}>Name</Text>
+          <Text style={[styles.text]}>(NAME HERE)</Text>
         </View>
-        <View>
-          <Text style={styles.text}>Difficulty Level</Text>
-          <Text style={styles.text}>{difficultyLevel}</Text>
-          <Pressable
-            style={styles.button}
-            onPress={() => setModalVisible(true)}
-          >
-            <Text style={styles.text}>Change</Text>
-          </Pressable>
+
+        <View style={styles.settingContainer}>
+          <Text style={[styles.text, styles.subheading]}>Difficulty</Text>
+          <Text style={[styles.text]}>({difficultyLevel})</Text>
+          <View style={styles.buttonGroup}>
+            <Pressable
+              style={styles.button}
+              onPress={() => setDifficultyLevel("easy")}
+              id="difficultyEasyButton"
+            >
+              <Text style={styles.text}>Easy</Text>
+            </Pressable>
+            <Pressable
+              style={styles.button}
+              onPress={() => setDifficultyLevel("medium")}
+              id="difficultyMediumButton"
+            >
+              <Text style={styles.text}>Medium</Text>
+            </Pressable>
+            <Pressable
+              style={styles.button}
+              onPress={() => setDifficultyLevel("hard")}
+              id="difficultyHardButton"
+            >
+              <Text style={styles.text}>Hard</Text>
+            </Pressable>
+          </View>
         </View>
+
         <Pressable style={styles.button} onPress={handleBackPress}>
           <Text style={styles.text}>Back</Text>
         </Pressable>
-      </View>
-
-      <View style={styles.container}>
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.modalBackground}>
-            <View style={styles.modalWindow}>
-              <Text style={styles.text}>Difficulty Level:</Text>
-              <View style={{ flexDirection: "row" }}>
-                <Pressable
-                  style={styles.button}
-                  onPress={() => setDifficultyLevel("easy")}
-                >
-                  <Text style={styles.text}>Easy</Text>
-                </Pressable>
-                <Pressable
-                  style={styles.button}
-                  onPress={() => setDifficultyLevel("medium")}
-                >
-                  <Text style={styles.text}>Medium</Text>
-                </Pressable>
-                <Pressable
-                  style={styles.button}
-                  onPress={() => setDifficultyLevel("hard")}
-                >
-                  <Text style={styles.text}>Hard</Text>
-                </Pressable>
-              </View>
-              <Pressable
-                style={styles.button}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={styles.text}>Close</Text>
-              </Pressable>
-            </View>
-          </View>
-        </Modal>
+        
       </View>
     </SafeAreaView>
   );

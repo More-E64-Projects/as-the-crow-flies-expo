@@ -16,15 +16,24 @@ const styles = StyleSheet.create({
   formContainer: {
     flex: 2,
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
-  headingText: {
-    fontSize: 50,
-    color: "hsla(215, 100%, 30%, 1.0)",
+  heading: {
+    fontSize: 60,
+  },
+  subheading: {
+    fontSize: 35,
   },
   text: {
-    fontSize: 25,
+    fontSize: 20,
     color: "hsla(215, 100%, 30%, 1.0)",
+  },
+  settingContainer: {
+    flex: 1,
+    alignItems: "center",
+  },
+  buttonGroup: {
+    flexDirection: "row",
   },
   button: {
     backgroundColor: "hsla(58, 60%, 75%, 1.0)",
@@ -33,6 +42,7 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderRadius: 100,
     padding: 10,
+    margin: 10,
   },
   modalBackground: {
     flex: 1,
