@@ -1,5 +1,6 @@
 import { Text, StyleSheet, View, Button, Image, ImageBackground} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import NameInput from '../NameInput';
 
 const globeImage = require("../assets/f.gif");
 const backgroundImage = require("../assets/stars_background.jpg");
@@ -27,6 +28,7 @@ export default function HomeScreen() {
         <ImageBackground source={backgroundImage} style={styles.backgroundImage} resizeMode="cover">
           <View style={styles.content}>
             <Text style={styles.textTitle}>As The Crow Flies</Text>
+            <NameInput />
             <Image style={styles.image} source={globeImage}/>
             <View style={styles.buttonWrapper}>
               <Button title="< Play Game >" color='white' onPress={handleGamePress} />

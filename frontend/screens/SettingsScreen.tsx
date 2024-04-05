@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { SafeAreaView, View, Text, Pressable, Modal } from "react-native";
+import React, { useContext, useState } from "react";
+import { StyleSheet, SafeAreaView, View, Text, Pressable, Modal } from "react-native";
+import RNPickerSelect from "react-native-picker-select";
 import { useNavigation } from "@react-navigation/native";
+import { AppContext } from "../AppContext"; //for userName
 import styles from "../styles/styles";
 
 function SettingsScreen() {
@@ -12,17 +14,26 @@ function SettingsScreen() {
     navigation.goBack();
   };
 
+  const contextValue = useContext(AppContext);
+    if (!contextValue) {
+        return null;
+    }
+  const { userName, setUserName } = contextValue;
+  //need someway to save the name when the game is lost!
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.logoContainer}>
         <Text style={styles.logo}>🌍</Text>
       </View>
       <View style={styles.formContainer}>
+
         <Text style={[styles.text, styles.heading]}>Settings</Text>
 
         <View style={styles.settingContainer}>
-          <Text style={[styles.text, styles.subheading]}>Name</Text>
-          <Text style={[styles.text]}>(NAME HERE)</Text>
+          <Text style={[styles.text, styles.subheading]}>Player</Text>
+          <Text style={[styles.text]}>{userName}</Text>
+
         </View>
 
         <View style={styles.settingContainer}>

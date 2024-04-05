@@ -10,6 +10,8 @@ type StateObject = {
     setCurrentLevel: (level: Level) => void;
     targetName: string;
     setTargetName: (name: string) => void;
+    userName: string; // Player's name -  userName
+    setUserName: (name: string) => void; 
 };
 
 export const AppContext = createContext<StateObject | null>(null);
@@ -23,6 +25,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const [guessesRemaining, setGuessesRemaining] = useState(5);
     const [currentLevel, setCurrentLevel] = useState(edinburghLandmarks);
     const [targetName, setTargetName] = useState("");
+    const [userName, setUserName] = useState(""); 
+    // console.log("AppContext  - ", userName)
+
 
     const state: StateObject = {
         //3 - then also put it here, so that can be accessed from any screen in the stack
@@ -31,7 +36,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         currentLevel,
         setCurrentLevel,
         targetName,
-        setTargetName
+        setTargetName,
+        userName, 
+        setUserName,
     }
 
     return (
