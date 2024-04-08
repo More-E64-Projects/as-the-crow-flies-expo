@@ -11,7 +11,7 @@ type StateObject = {
     targetName: string;
     setTargetName: (name: string) => void;
     userName: string; // Player's name -  userName
-    setUserName: (name: string) => void; 
+    setUserName: (name: string) => void;
 };
 
 export const AppContext = createContext<StateObject | null>(null);
@@ -25,7 +25,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const [guessesRemaining, setGuessesRemaining] = useState(5);
     const [currentLevel, setCurrentLevel] = useState(edinburghLandmarks);
     const [targetName, setTargetName] = useState("");
-    const [userName, setUserName] = useState(""); 
+    const [userName, setUserName] = useState("");
     // console.log("AppContext  - ", userName)
 
 
@@ -37,7 +37,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setCurrentLevel,
         targetName,
         setTargetName,
-        userName, 
+        userName,
         setUserName,
     }
 
