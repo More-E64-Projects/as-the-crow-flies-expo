@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
-import { StyleSheet, SafeAreaView, View, Text, Button } from "react-native";
-import RNPickerSelect from "react-native-picker-select";
+import { StyleSheet, SafeAreaView, View, Text, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AppContext } from "../AppContext"; //for userName
+import styles from "../styles/styles";
+import PopoutSelect from "../components/PopoutSelect";
 
 function SettingsScreen() {
   const [difficultyLevel, setDifficultyLevel] = useState("medium");
-  const [startingLocation, setStartingLocation] = useState("here");
 
   const navigation = useNavigation();
 
@@ -27,66 +27,34 @@ function SettingsScreen() {
         <Text style={styles.logo}>🌍</Text>
       </View>
       <View style={styles.formContainer}>
-        <Text style={styles.headingText}>Settings</Text>
-        <Text style={styles.text}>Player: {userName}</Text>
-        <View>
-          <Text style={styles.text}>Difficulty Level</Text>
-          <RNPickerSelect
-            value={difficultyLevel}
-            placeholder={{ label: "- Choose a difficulty level -" }}
-            onValueChange={(value, itemIndex) => setDifficultyLevel(value)}
-            items={[
-              { label: "Easy", value: "easy" },
-              { label: "Medium", value: "medium" },
-              { label: "Hard", value: "hard" },
-            ]}
-          />
+        <View style={styles.settingContainer}>
+          <Text style={[styles.text, styles.heading]}>Settings</Text>
         </View>
-        <View>
-          <Text style={styles.text}>Starting Location</Text>
-          <RNPickerSelect
-            value={startingLocation}
-            placeholder={{ label: "- Choose a starting location -" }}
-            onValueChange={(value, itemIndex) => setStartingLocation(value)}
-            items={[
-              { label: "Here", value: "here" },
-              { label: "There", value: "there" },
-              { label: "Anywhere", value: "anywhere" },
-            ]}
-          />
+
+        <View style={styles.settingContainer}>
+          <Text style={[styles.text, styles.subheading]}>Player</Text>
+          <Text style={[styles.text]}>{userName}</Text>
         </View>
-        <Button title="Back" onPress={handleBackPress}></Button>
+
+        <View style={styles.settingContainer}>
+          <Text style={[styles.text, styles.subheading]}>Difficulty</Text>
+          <Text style={[styles.text]}>({difficultyLevel})</Text>
+          <View style={styles.buttonGroup}>
+            <PopoutSelect
+              property="Difficulty"
+              options={["easy", "medium", "hard"]}
+              stateObject={difficultyLevel}
+              stateSetter={setDifficultyLevel}
+            ></PopoutSelect>
+          </View>
+        </View>
+
+        <Pressable style={styles.button} onPress={handleBackPress}>
+          <Text style={styles.text}>Back</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "lightblue",
-  },
-  logoContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  logo: {
-    fontSize: 150,
-  },
-  formContainer: {
-    flex: 2,
-    alignItems: "center",
-    justifyContent: "space-around",
-  },
-  headingText: {
-    fontSize: 50,
-    color: "white",
-  },
-  text: {
-    fontSize: 25,
-    color: "white",
-  },
-});
 
 export default SettingsScreen;
