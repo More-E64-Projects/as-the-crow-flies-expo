@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     color: "hsla(215, 100%, 30%, 1.0)",
-    fontFamily: "Comfortaa"
+    fontFamily: "Rubik"
   },
   settingContainer: {
     flex: 1,
@@ -45,6 +45,10 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10,
     elevation: 5,
+    shadowOffset: {width: 3, height: 3},
+    shadowColor: "black",
+    shadowOpacity: 0.4,
+    shadowRadius: 5
   },
   modalBackground: {
     flex: 1,
@@ -56,8 +60,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "lightblue",
+    borderWidth: 2,
+    borderStyle: "solid",
+    borderColor: "hsla(215, 100%, 30%, 1.0)",
     borderRadius: 10,
-    elevation: 5,
+    elevation: 10,
+    padding: 10,
+    shadowOffset: {width: 3, height: 3},
+    shadowColor: "black",
+    shadowOpacity: 0.4,
+    shadowRadius: 5
+
   },
 });
 
