@@ -40,7 +40,6 @@ export default function GameScreen() {
   const [message, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
   const [locationFound, setLocationFound] = useState(false);
-//   const [isThereAnotherLocation, setIsThereAnotherLocation] = useState(true);
   const [gameOver, setGameOver] = useState(false);
 
   const mapRef = useRef<MapView>(null);
@@ -89,21 +88,6 @@ export default function GameScreen() {
     return distance;
   };
 
-  const isThereNextLocation = () => {
-    if (targetObject) {
-      const currentIndex = state?.currentLevel?.locations.indexOf(targetObject);
-      if (currentIndex !== -1 && currentIndex !== undefined) {
-        const nextObject = state?.currentLevel?.locations[currentIndex + 1];
-        if (!nextObject) {
-          return false;
-        } else {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
   const nextLocation = () => {
     if (targetObject) {
       const currentIndex = state?.currentLevel?.locations.indexOf(targetObject);
@@ -111,6 +95,7 @@ export default function GameScreen() {
         const nextObject = state?.currentLevel?.locations[currentIndex + 1];
         if (!nextObject) {
           setGameOver(true);
+          navigation.navigate("Win" as never);
         } else {
           setTargetObject(nextObject);
           setSelectedLocation(null);
@@ -151,11 +136,6 @@ export default function GameScreen() {
     navigation.navigate("Pause" as never);
   };
 
-  if (gameOver) {
-    // setTargetObject(state?.currentLevel?.locations[0]);
-    navigation.navigate("Win" as never);
-  }
-
   return (
     <View style={styles.container}>
       <MapView
@@ -193,19 +173,21 @@ export default function GameScreen() {
             alt={targetObject ? targetObject.name : "Your target location"}
             src={targetObject?.imageUrl}
           />
+          {targetObject?.positionInList === state?.currentLevel.locations.length ? 
           <Button
+            title="Finish Game"
+            color="#f194ff"
+            onPress={nextLocation}
+                />
+            :
+            <Button
             title="Next Location"
             color="#f194ff"
             onPress={nextLocation}
-          />
+                />}
         </View>
       )}
       
-      {/* {gameOver && (
-        <View style={styles.searchContainer}>
-          <Text>You win! Now give us all jobs.</Text>
-        </View>
-      )} */}
     </View>
   );
 }
