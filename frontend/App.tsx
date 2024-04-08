@@ -6,10 +6,16 @@ import GameScreen from './screens/GameScreen';
 import PauseScreen from './screens/PauseScreen';
 import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import { useFonts } from 'expo-font';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
+
+  const [fontsLoaded] = useFonts({
+    'Comfortaa': require('./assets/fonts/Comfortaa-VariableFont_wght.ttf'),
+  });
+
   return (
     //the app provider wrapper is providing the state from the context API to everything listed below
     <AppProvider>
