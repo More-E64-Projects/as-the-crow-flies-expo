@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Dimensions, StyleSheet, View, Text, Button, DevSettings } from 'react-native';
+import { Dimensions, StyleSheet, View, Text, Button, DevSettings, Image } from 'react-native';
 
 import MapView, { LatLng, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Constants from "expo-constants";
@@ -145,6 +145,7 @@ export default function GameScreen() {
             </View>}
             {locationFound && <View style={styles.searchContainer}>
                 <Text>{`You found ${targetObject?.name} in ${counter} guesses!`}</Text>
+                <Image style={styles.image} alt={targetObject ? targetObject.name : "Your target location"} src={targetObject?.imageUrl} />
                 <Button
                     title='Next Location'
                     color="#f194ff"
@@ -202,6 +203,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#9feced',
         borderRadius: 10,
     },
+    image: {
+        width: "100%",
+        height: 170,
+        marginLeft: "auto",
+        marginRight: "auto",
+    }
 });
 
 const noLabelStyle = (
