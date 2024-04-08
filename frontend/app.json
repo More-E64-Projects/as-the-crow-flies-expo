@@ -30,7 +30,7 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/fonts/Comfortaa-VariableFont_wght.ttf", "./assets/fonts/Poppins-Regular.ttf", "./assets/fonts/Rubik-VariableFont_wght.ttf" ]
+          "fonts": ["./assets/fonts/Comfortaa-VariableFont_wght.ttf"]
         }
       ]
     ]

@@ -14,8 +14,6 @@ function App() {
 
   const [fontsLoaded] = useFonts({
     'Comfortaa': require('./assets/fonts/Comfortaa-VariableFont_wght.ttf'),
-    'Poppins': require('./assets/fonts/Poppins-Regular.ttf'),
-    'Rubik': require('./assets/fonts/Rubik-VariableFont_wght.ttf'),
   });
 
   return (

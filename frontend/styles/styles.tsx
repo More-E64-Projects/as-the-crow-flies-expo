@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     color: "hsla(215, 100%, 30%, 1.0)",
-    fontFamily: "Rubik"
+    fontFamily: "Comfortaa"
   },
   settingContainer: {
     flex: 1,
