@@ -1,6 +1,7 @@
 import React, { useContext, useState} from 'react';
 import { AppContext } from './AppContext';
-import { TextInput, StyleSheet } from 'react-native';
+import { TextInput } from 'react-native';
+import styles from "./styles/styles";
 
 export default function NameInput () {
 
@@ -15,24 +16,16 @@ export default function NameInput () {
     const handleNameChange = (name: string) => {
         setInputName(name);
         setUserName(name); 
-        console.log("NameInput comp - ", name)
     }; //need someway to save the name when the game is lost!
 
     return (
         <TextInput 
-            style={styles.text}
+            style={styles.textInput}
             placeholder="Enter your name"
             value={inputName}
             onChangeText={handleNameChange}
-            placeholderTextColor="blue"
         />
     );
 };
-const styles = StyleSheet.create({
-    text: {
-        color: "black",
-        backgroundColor: 'white'
-    },
-    
-    });
+
 
