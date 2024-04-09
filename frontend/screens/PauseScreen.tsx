@@ -18,6 +18,7 @@ export default function PauseScreen() {
         navigation.navigate('Settings' as never);
     };
     const handleQuitPress = () => {
+        state?.setGuessesRemaining(5);
         navigation.navigate('Home' as never);
     };
 
