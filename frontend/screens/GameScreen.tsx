@@ -35,6 +35,7 @@ export default function GameScreen() {
     state?.currentLevel?.locations[0]
   );
 
+  //just leaving this comment here as a reminder to move as much of this as possible up to the appcontext file
   const [selectedLocation, setSelectedLocation] = useState<LatLng | null>();
   const [guessedDistance, setGuessedDistance] = useState(6371);
   const [message, setMessage] = useState("");
@@ -79,9 +80,9 @@ export default function GameScreen() {
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(lat1 * (Math.PI / 180)) *
-        Math.cos(lat2 * (Math.PI / 180)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
+      Math.cos(lat2 * (Math.PI / 180)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = R * c; // Distance in kilometers
     setGuessedDistance(distance);
@@ -103,7 +104,7 @@ export default function GameScreen() {
           setCounter(0);
           setMessage("");
           setLocationFound(false);
-          state?.setGuessesRemaining(5);
+          state?.setGuessesRemaining(state.difficultyLevel.guessesPerLocation);
           state.setTargetName(targetObject.name);
         }
       }
@@ -173,21 +174,21 @@ export default function GameScreen() {
             alt={targetObject ? targetObject.name : "Your target location"}
             src={targetObject?.imageUrl}
           />
-          {targetObject?.positionInList === state?.currentLevel.locations.length ? 
-          <Button
-            title="Finish Game"
-            color="#f194ff"
-            onPress={nextLocation}
-                />
+          {targetObject?.positionInList === state?.currentLevel.locations.length ?
+            <Button
+              title="Finish Game"
+              color="#f194ff"
+              onPress={nextLocation}
+            />
             :
             <Button
-            title="Next Location"
-            color="#f194ff"
-            onPress={nextLocation}
-                />}
+              title="Next Location"
+              color="#f194ff"
+              onPress={nextLocation}
+            />}
         </View>
       )}
-      
+
     </View>
   );
 }

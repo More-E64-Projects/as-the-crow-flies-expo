@@ -25,11 +25,11 @@ interface AppProviderProps {
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     //2 - then add the state as normal
-    const [guessesRemaining, setGuessesRemaining] = useState(5);
     const [currentLevel, setCurrentLevel] = useState(edinburghLandmarks);
     const [targetName, setTargetName] = useState("");
     const [userName, setUserName] = useState("");
     const [difficultyLevel, setDifficultyLevel] = useState(medium);
+    const [guessesRemaining, setGuessesRemaining] = useState(difficultyLevel.guessesPerLocation);
     // console.log("AppContext  - ", userName)
 
 
