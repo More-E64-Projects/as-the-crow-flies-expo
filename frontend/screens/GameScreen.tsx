@@ -48,6 +48,10 @@ export default function GameScreen() {
   const navigation = useNavigation();
 
   useEffect(() => {
+    state?.setGuessesRemaining(state.difficultyLevel.guessesPerLocation)
+  }, [state?.difficultyLevel]);
+
+  useEffect(() => {
     if (state?.difficultyLevel) {
 
       if (guessedDistance < state.difficultyLevel.marginForError) {
@@ -62,7 +66,7 @@ export default function GameScreen() {
     }
   }, [targetObject]);
 
-  if (state?.guessesRemaining === 0) {
+  if (state?.difficultyLevel.guessesPerLocation && counter >= state?.difficultyLevel.guessesPerLocation) {
     return (
       <SafeAreaView>
         <Text style={{ textAlign: "center" }}>YOU LOSE!</Text>
@@ -160,6 +164,7 @@ export default function GameScreen() {
         <View style={styles.searchContainer}>
           <Text>{`Current Target: ${targetObject?.name}\nLocation ${targetObject?.positionInList} of ${state?.currentLevel.locations.length}`}</Text>
           <Text>Guesses Remaining: {state?.guessesRemaining}</Text>
+          <Text>Difficulty: {state?.difficultyLevel.name}</Text>
         </View>
       )}
       {message !== "" && (
@@ -167,6 +172,7 @@ export default function GameScreen() {
           <Text>{message}</Text>
           <Text>{`Location ${targetObject?.positionInList} of ${state?.currentLevel.locations.length}`}</Text>
           <Text>Guesses Remaining: {state?.guessesRemaining}</Text>
+          <Text>Difficulty: {state?.difficultyLevel.name}</Text>
         </View>
       )}
       {locationFound && (

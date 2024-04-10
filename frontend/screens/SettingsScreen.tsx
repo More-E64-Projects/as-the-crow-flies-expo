@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { StyleSheet, SafeAreaView, View, Text, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AppContext } from "../AppContext"; //for userName
@@ -21,6 +21,12 @@ function SettingsScreen() {
   }
   const { userName, setUserName, difficultyLevel, setDifficultyLevel } = contextValue;
   //need someway to save the name when the game is lost!
+
+  useEffect(() => {
+    // Any logic that depends on the difficultyLevel state can go here
+    // This will be triggered whenever difficultyLevel changes
+    console.log("Difficulty level changed:", difficultyLevel);
+  }, [difficultyLevel]);
 
   return (
     <SafeAreaView style={styles.container}>
