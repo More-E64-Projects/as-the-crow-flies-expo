@@ -48,12 +48,20 @@ export default function GameScreen() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    state?.setGuessesRemaining(state.difficultyLevel.guessesPerLocation)
+    state?.setGuessesRemaining(state.difficultyLevel.guessesPerLocation);
+    setMessage("")
+    setCounter(0);
+    setTargetObject(state?.currentLevel?.locations[0]);
+    state?.setTargetName(state?.currentLevel?.locations[0].name);
   }, [state?.difficultyLevel]);
+  console.log("message outside", message)
+  console.log("targetObject outside", targetObject);
+  console.log("state?.targetName outside", state?.targetName);
+  console.log("counter outside", counter);
+  console.log("state?.difficultyLevel outside", state?.difficultyLevel);
 
   useEffect(() => {
     if (state?.difficultyLevel) {
-
       if (guessedDistance < state.difficultyLevel.marginForError) {
         setLocationFound(true);
       }
@@ -66,7 +74,10 @@ export default function GameScreen() {
     }
   }, [targetObject]);
 
-  if (state?.difficultyLevel.guessesPerLocation && counter >= state?.difficultyLevel.guessesPerLocation) {
+  if (
+    state?.difficultyLevel.guessesPerLocation &&
+    counter >= state?.difficultyLevel.guessesPerLocation
+  ) {
     return (
       <SafeAreaView>
         <Text style={{ textAlign: "center" }}>YOU LOSE!</Text>
@@ -87,9 +98,9 @@ export default function GameScreen() {
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(lat1 * (Math.PI / 180)) *
-      Math.cos(lat2 * (Math.PI / 180)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
+        Math.cos(lat2 * (Math.PI / 180)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = R * c; // Distance in kilometers
     setGuessedDistance(distance);
@@ -112,6 +123,7 @@ export default function GameScreen() {
           setMessage("");
           setLocationFound(false);
           state?.setGuessesRemaining(state.difficultyLevel.guessesPerLocation);
+          // You below are under close watch!!!!!!!! You will be deteled if useless
           state.setTargetName(targetObject.name);
         }
       }
@@ -183,21 +195,22 @@ export default function GameScreen() {
             alt={targetObject ? targetObject.name : "Your target location"}
             src={targetObject?.imageUrl}
           />
-          {targetObject?.positionInList === state?.currentLevel.locations.length ?
+          {targetObject?.positionInList ===
+          state?.currentLevel.locations.length ? (
             <Button
               title="Finish Game"
               color="#f194ff"
               onPress={nextLocation}
             />
-            :
+          ) : (
             <Button
               title="Next Location"
               color="#f194ff"
               onPress={nextLocation}
-            />}
+            />
+          )}
         </View>
       )}
-
     </View>
   );
 }
