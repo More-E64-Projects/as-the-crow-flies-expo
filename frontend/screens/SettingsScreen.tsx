@@ -4,9 +4,10 @@ import { useNavigation } from "@react-navigation/native";
 import { AppContext } from "../AppContext"; //for userName
 import styles from "../styles/styles";
 import PopoutSelect from "../components/PopoutSelect";
+import { DifficultyLevel, easy, medium, hard } from "../DifficultyLevel";
 
 function SettingsScreen() {
-  const [difficultyLevel, setDifficultyLevel] = useState("medium");
+  // const [difficultyLevel, setDifficultyLevel] = useState("medium");
 
   const navigation = useNavigation();
 
@@ -18,7 +19,7 @@ function SettingsScreen() {
   if (!contextValue) {
     return null;
   }
-  const { userName, setUserName } = contextValue;
+  const { userName, setUserName, difficultyLevel, setDifficultyLevel } = contextValue;
   //need someway to save the name when the game is lost!
 
   return (
@@ -38,11 +39,11 @@ function SettingsScreen() {
 
         <View style={styles.settingContainer}>
           <Text style={[styles.text, styles.subheading]}>Difficulty</Text>
-          <Text style={[styles.text]}>({difficultyLevel})</Text>
+          <Text style={[styles.text]}>({difficultyLevel.name})</Text>
           <View style={styles.buttonGroup}>
             <PopoutSelect
               property="Difficulty"
-              options={["easy", "medium", "hard"]}
+              options={[easy, medium, hard]}
               stateObject={difficultyLevel}
               stateSetter={setDifficultyLevel}
             ></PopoutSelect>
