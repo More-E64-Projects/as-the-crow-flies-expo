@@ -15,9 +15,9 @@ function SettingsScreen() {
   };
 
   const contextValue = useContext(AppContext);
-    if (!contextValue) {
-        return null;
-    }
+  if (!contextValue) {
+    return null;
+  }
   const { userName, setUserName } = contextValue;
   //need someway to save the name when the game is lost!
 

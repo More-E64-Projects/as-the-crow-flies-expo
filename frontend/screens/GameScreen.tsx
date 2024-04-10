@@ -48,8 +48,11 @@ export default function GameScreen() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    if (guessedDistance < 0.1) {
-      setLocationFound(true);
+    if (state?.difficultyLevel) {
+
+      if (guessedDistance < state.difficultyLevel.marginForError) {
+        setLocationFound(true);
+      }
     }
   }, [guessedDistance]);
 

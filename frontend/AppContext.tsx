@@ -1,6 +1,6 @@
 import React, { createContext, useState, ReactNode } from 'react';
 import { Level, edinburghLandmarks } from './levels';
-import { DifficultyLevel, medium } from './DifficultyLevel';
+import { DifficultyLevel, easy, hard, medium } from './DifficultyLevel';
 
 
 //1 - whenever a piece of state is added, add a property for both the state and the set function here, following the same structure as seen below
@@ -28,7 +28,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const [currentLevel, setCurrentLevel] = useState(edinburghLandmarks);
     const [targetName, setTargetName] = useState("");
     const [userName, setUserName] = useState("");
-    const [difficultyLevel, setDifficultyLevel] = useState(medium);
+    const [difficultyLevel, setDifficultyLevel] = useState(hard);
     const [guessesRemaining, setGuessesRemaining] = useState(difficultyLevel.guessesPerLocation);
     // console.log("AppContext  - ", userName)
 
