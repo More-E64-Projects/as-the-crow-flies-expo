@@ -1,5 +1,6 @@
 import React, { createContext, useState, ReactNode } from 'react';
 import { Level, edinburghLandmarks } from './levels';
+import { DifficultyLevel, easy, hard, medium } from './DifficultyLevel';
 
 
 //1 - whenever a piece of state is added, add a property for both the state and the set function here, following the same structure as seen below
@@ -12,6 +13,8 @@ type StateObject = {
     setTargetName: (name: string) => void;
     userName: string; // Player's name -  userName
     setUserName: (name: string) => void;
+    difficultyLevel: DifficultyLevel;
+    setDifficultyLevel: (difficultyLevel: DifficultyLevel) => void;
 };
 
 export const AppContext = createContext<StateObject | null>(null);
@@ -22,10 +25,11 @@ interface AppProviderProps {
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     //2 - then add the state as normal
-    const [guessesRemaining, setGuessesRemaining] = useState(5);
     const [currentLevel, setCurrentLevel] = useState(edinburghLandmarks);
     const [targetName, setTargetName] = useState("");
     const [userName, setUserName] = useState("");
+    const [difficultyLevel, setDifficultyLevel] = useState(medium);
+    const [guessesRemaining, setGuessesRemaining] = useState(difficultyLevel.guessesPerLocation);
     // console.log("AppContext  - ", userName)
 
 
@@ -39,6 +43,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setTargetName,
         userName,
         setUserName,
+        difficultyLevel,
+        setDifficultyLevel,
     }
 
     return (

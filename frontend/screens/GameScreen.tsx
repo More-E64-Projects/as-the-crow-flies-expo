@@ -35,6 +35,7 @@ export default function GameScreen() {
     state?.currentLevel?.locations[0]
   );
 
+  //just leaving this comment here as a reminder to move as much of this as possible up to the appcontext file
   const [selectedLocation, setSelectedLocation] = useState<LatLng | null>();
   const [guessedDistance, setGuessedDistance] = useState(6371);
   const [message, setMessage] = useState("");
@@ -47,8 +48,23 @@ export default function GameScreen() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    if (guessedDistance < 0.1) {
-      setLocationFound(true);
+    state?.setGuessesRemaining(state.difficultyLevel.guessesPerLocation);
+    setMessage("")
+    setCounter(0);
+    setTargetObject(state?.currentLevel?.locations[0]);
+    state?.setTargetName(state?.currentLevel?.locations[0].name);
+  }, [state?.difficultyLevel]);
+  console.log("message outside", message)
+  console.log("targetObject outside", targetObject);
+  console.log("state?.targetName outside", state?.targetName);
+  console.log("counter outside", counter);
+  console.log("state?.difficultyLevel outside", state?.difficultyLevel);
+
+  useEffect(() => {
+    if (state?.difficultyLevel) {
+      if (guessedDistance < state.difficultyLevel.marginForError) {
+        setLocationFound(true);
+      }
     }
   }, [guessedDistance]);
 
@@ -58,7 +74,10 @@ export default function GameScreen() {
     }
   }, [targetObject]);
 
-  if (state?.guessesRemaining === 0) {
+  if (
+    state?.difficultyLevel.guessesPerLocation &&
+    counter >= state?.difficultyLevel.guessesPerLocation
+  ) {
     return (
       <SafeAreaView>
         <Text style={{ textAlign: "center" }}>YOU LOSE!</Text>
@@ -103,7 +122,8 @@ export default function GameScreen() {
           setCounter(0);
           setMessage("");
           setLocationFound(false);
-          state?.setGuessesRemaining(5);
+          state?.setGuessesRemaining(state.difficultyLevel.guessesPerLocation);
+          // You below are under close watch!!!!!!!! You will be deteled if useless
           state.setTargetName(targetObject.name);
         }
       }
@@ -156,6 +176,7 @@ export default function GameScreen() {
         <View style={styles.searchContainer}>
           <Text>{`Current Target: ${targetObject?.name}\nLocation ${targetObject?.positionInList} of ${state?.currentLevel.locations.length}`}</Text>
           <Text>Guesses Remaining: {state?.guessesRemaining}</Text>
+          <Text>Difficulty: {state?.difficultyLevel.name}</Text>
         </View>
       )}
       {message !== "" && (
@@ -163,6 +184,7 @@ export default function GameScreen() {
           <Text>{message}</Text>
           <Text>{`Location ${targetObject?.positionInList} of ${state?.currentLevel.locations.length}`}</Text>
           <Text>Guesses Remaining: {state?.guessesRemaining}</Text>
+          <Text>Difficulty: {state?.difficultyLevel.name}</Text>
         </View>
       )}
       {locationFound && (
@@ -173,21 +195,22 @@ export default function GameScreen() {
             alt={targetObject ? targetObject.name : "Your target location"}
             src={targetObject?.imageUrl}
           />
-          {targetObject?.positionInList === state?.currentLevel.locations.length ? 
-          <Button
-            title="Finish Game"
-            color="#f194ff"
-            onPress={nextLocation}
-                />
-            :
+          {targetObject?.positionInList ===
+          state?.currentLevel.locations.length ? (
             <Button
-            title="Next Location"
-            color="#f194ff"
-            onPress={nextLocation}
-                />}
+              title="Finish Game"
+              color="#f194ff"
+              onPress={nextLocation}
+            />
+          ) : (
+            <Button
+              title="Next Location"
+              color="#f194ff"
+              onPress={nextLocation}
+            />
+          )}
         </View>
       )}
-      
     </View>
   );
 }
