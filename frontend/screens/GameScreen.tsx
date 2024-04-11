@@ -40,6 +40,7 @@ export default function GameScreen() {
   const [guessedDistance, setGuessedDistance] = useState(6371);
   const [message, setMessage] = useState("");
   const [counter, setCounter] = useState(0);
+  const [totalGuessesRemaining, setTotalGuessesRemaining] = useState(0)
   const [locationFound, setLocationFound] = useState(false);
   const [gameOver, setGameOver] = useState(false);
 
@@ -53,17 +54,25 @@ export default function GameScreen() {
     setCounter(0);
     setTargetObject(state?.currentLevel?.locations[0]);
     state?.setTargetName(state?.currentLevel?.locations[0].name);
+    // RESET SCORE WHEN CHANGING DIFFICULTY, WILL CAUSE ISSUES WHEN CHANGING LEVEL MID-GAME
+    state?.setScore(0);
+    setTotalGuessesRemaining(0)
   }, [state?.difficultyLevel]);
   console.log("message outside", message)
   console.log("targetObject outside", targetObject);
   console.log("state?.targetName outside", state?.targetName);
   console.log("counter outside", counter);
   console.log("state?.difficultyLevel outside", state?.difficultyLevel);
+  // console.log("totalGuessesRemaining outside", totalGuessesRemaining);
 
   useEffect(() => {
     if (state?.difficultyLevel) {
       if (guessedDistance < state.difficultyLevel.marginForError) {
         setLocationFound(true);
+        // WHEN LOCATION FOUND, ADD GUESSES REMAINING INTO A RUNNING TOTAL
+        // console.log("RUNNING TOTAL GUESSES REMAINING: " + totalGuessesRemaining);
+        // console.log("GUESSES REMAINING: " + (state?.difficultyLevel.guessesPerLocation - (counter)));
+        setTotalGuessesRemaining(totalGuessesRemaining + (state?.difficultyLevel.guessesPerLocation - (counter)));
       }
     }
   }, [guessedDistance]);
@@ -81,6 +90,7 @@ export default function GameScreen() {
     return (
       <SafeAreaView>
         <Text style={{ textAlign: "center" }}>YOU LOSE!</Text>
+        <Text style={{ textAlign: "center" }}>SCORE: {state?.score}</Text>
         <Button title="Try again" onPress={() => DevSettings.reload()}></Button>
       </SafeAreaView>
     );
@@ -114,6 +124,16 @@ export default function GameScreen() {
         const nextObject = state?.currentLevel?.locations[currentIndex + 1];
         if (!nextObject) {
           setGameOver(true);
+          // WHEN GAME OVER, CALCULATE SCORE
+          const guessesRemaining = totalGuessesRemaining
+          // console.log("GUESSES REMAINING: " + guessesRemaining)
+          const totalLocations = state?.currentLevel.locations.length
+          // console.log("TOTAL LOCATIONS: " + totalLocations)
+          const totalPossibleGuesses = totalLocations * state?.difficultyLevel.guessesPerLocation
+          // console.log("TOTAL POSSIBLE GUESSES: " + totalPossibleGuesses)
+          const calculatedScore = (guessesRemaining + totalLocations) / totalPossibleGuesses
+          // console.log("SCORE: " + calculatedScore)
+          state?.setScore(calculatedScore)
           navigation.navigate("Win" as never);
         } else {
           setTargetObject(nextObject);
