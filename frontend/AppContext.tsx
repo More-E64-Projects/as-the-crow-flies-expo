@@ -15,6 +15,8 @@ type StateObject = {
     setUserName: (name: string) => void;
     difficultyLevel: DifficultyLevel;
     setDifficultyLevel: (difficultyLevel: DifficultyLevel) => void;
+    score: number;
+    setScore: (number: number) => void;
 };
 
 export const AppContext = createContext<StateObject | null>(null);
@@ -30,8 +32,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const [userName, setUserName] = useState("");
     const [difficultyLevel, setDifficultyLevel] = useState(medium);
     const [guessesRemaining, setGuessesRemaining] = useState(difficultyLevel.guessesPerLocation);
+    const [score, setScore] = useState(0)
     // console.log("AppContext  - ", userName)
-
 
     const state: StateObject = {
         //3 - then also put it here, so that can be accessed from any screen in the stack
@@ -45,7 +47,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setUserName,
         difficultyLevel,
         setDifficultyLevel,
-    }
+        score,
+        setScore
+    };
 
     return (
         <AppContext.Provider value={state}>

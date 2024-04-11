@@ -13,6 +13,16 @@ function WinScreen() {
     navigation.navigate("Home" as never);
   };
 
+  const getStarRating = (score: number) => {
+    if (score == 1) {
+      return "⭐️⭐️⭐️";
+    } else if (score >= 0.6) {
+      return "⭐️⭐️";
+    } else {
+      return "⭐️";
+    }
+  };
+
   // 08/04 Leaving this as it was, just in case we want to add more buttons later on.
   const buttons = [
     { text: "Home", color: "#158d43", onPress: handleHomePress },
@@ -25,8 +35,14 @@ function WinScreen() {
       </View>
       <Text style={styles.heading}>You win! Now give us all jobs.</Text>
       <View>
-        <Text style={styles.gameInfo}>0 points just now. Work in progress</Text>
-        <Text style={styles.gameInfo}>Good Job!</Text>
+        {/* Showing score output FOR DEBUGGING, probably will only show star rating in future */}
+        <Text style={styles.gameInfo}>
+          SCORE: {parseFloat(state?.score * 100).toFixed(0)}%
+        </Text>
+        <Text style={styles.gameInfo}> {getStarRating(state?.score)}</Text>
+        <Text style={styles.gameInfo}>
+          Good Job! ...unless you got one star!
+        </Text>
       </View>
       {/* 08/04 Leaving this as it was, just in case we want to add more buttons later on. */}
       <View>

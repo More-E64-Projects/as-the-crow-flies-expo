@@ -19,6 +19,6 @@ export const medium: DifficultyLevel = {
 export const hard: DifficultyLevel = {
     name: 'hard',
     guessesPerLocation: 3,
-    marginForError: 0.05
+    marginForError: 0.075
 };
 
