@@ -37,14 +37,11 @@ export default function GameScreen() {
 
   const {
     currentLevel,
-    setCurrentLevel,
     difficultyLevel,
-    setDifficultyLevel,
     guessesRemaining,
     setGuessesRemaining,
     score,
     setScore,
-    targetName,
     setTargetName
   } = contextValue;
 
