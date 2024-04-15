@@ -7,7 +7,17 @@ import { AppContext } from '../AppContext';
 
 export default function PauseScreen() {
 
-    const state = useContext(AppContext)
+    const contextValue = useContext(AppContext);
+    if (!contextValue) {
+        return null;
+    }
+
+    const {
+        currentLevel,
+        guessesRemaining,
+        setGuessesRemaining,
+        targetName,
+    } = contextValue;
 
     const navigation = useNavigation();
 
@@ -18,7 +28,8 @@ export default function PauseScreen() {
         navigation.navigate('Settings' as never);
     };
     const handleQuitPress = () => {
-        state?.setGuessesRemaining(5);
+        //this should be changed to reflect the actual difficulty level
+        setGuessesRemaining(5);
         navigation.navigate('Home' as never);
     };
 
@@ -35,9 +46,9 @@ export default function PauseScreen() {
             </View>
             <Text style={styles.heading}>GAME PAUSED</Text>
             <View >
-                <Text style={styles.gameInfo}>{state?.currentLevel?.description}</Text>
-                <Text style={styles.gameInfo}>Current Target: {state?.targetName}</Text>
-                <Text style={styles.gameInfo}>Guesses remaining: {state?.guessesRemaining}</Text>
+                <Text style={styles.gameInfo}>{currentLevel?.description}</Text>
+                <Text style={styles.gameInfo}>Current Target: {targetName}</Text>
+                <Text style={styles.gameInfo}>Guesses remaining: {guessesRemaining}</Text>
             </View>
             <View>
                 {buttons.map((button, index) => (
