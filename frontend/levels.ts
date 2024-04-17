@@ -10,6 +10,8 @@ type Location = {
 export type Level = {
     description: string;
     locations: Location[];
+    startingPoint: LatLng;
+    zoomLevel: number;
 };
 
 export const edinburghLandmarks: Level = {
@@ -59,6 +61,11 @@ export const edinburghLandmarks: Level = {
             },
             positionInList: 5,
             imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Edinburgh_Calton_Hill.jpg/576px-Edinburgh_Calton_Hill.jpg"
-        }
-    ]
+        },
+    ],
+    startingPoint: {
+        latitude: 55.9425,
+        longitude: -3.2681,
+    },
+    zoomLevel: 0.02
 };

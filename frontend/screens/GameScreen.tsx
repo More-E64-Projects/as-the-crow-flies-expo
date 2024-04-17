@@ -16,17 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import { AppContext } from "../AppContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const { width, height } = Dimensions.get("window");
 
-const ASPECT_RATIO = width / height;
-const LATITUDE_DELTA = 0.02;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const INITIAL_POSITION = {
-  latitude: 55.9425,
-  longitude: -3.2681,
-  latitudeDelta: LATITUDE_DELTA,
-  longitudeDelta: LONGITUDE_DELTA,
-};
 
 export default function GameScreen() {
 
@@ -57,6 +47,18 @@ export default function GameScreen() {
   const [totalGuessesRemaining, setTotalGuessesRemaining] = useState(0)
   const [locationFound, setLocationFound] = useState(false);
   const [gameOver, setGameOver] = useState(false);
+
+  const { width, height } = Dimensions.get("window");
+
+  const ASPECT_RATIO = width / height;
+  const LATITUDE_DELTA = currentLevel.zoomLevel;
+  const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+  const INITIAL_POSITION = {
+    latitude: currentLevel.startingPoint.latitude,
+    longitude: currentLevel.startingPoint.longitude,
+    latitudeDelta: LATITUDE_DELTA,
+    longitudeDelta: LONGITUDE_DELTA,
+  };
 
   const mapRef = useRef<MapView>(null);
 
