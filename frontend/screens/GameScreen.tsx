@@ -201,7 +201,7 @@ export default function GameScreen() {
       </View>
       {!locationFound && (
         <View style={styles.searchContainer}>
-          <Text>{`Current Target: ${targetObject?.name}\nLocation ${targetObject.positionInList} of ${currentLevel.locations.length}`}</Text>
+          <Text>{`Current Target: ${targetObject?.name}\nLocation ${currentLevel.locations.indexOf(targetObject) + 1} of ${currentLevel.locations.length}`}</Text>
           <Text>Guesses Remaining: {guessesRemaining}</Text>
           <Text>Difficulty: {difficultyLevel.name}</Text>
         </View>
@@ -209,7 +209,7 @@ export default function GameScreen() {
       {message !== "" && (
         <View style={styles.searchContainer}>
           <Text>{message}</Text>
-          <Text>{`Location ${targetObject.positionInList} of ${currentLevel.locations.length}`}</Text>
+          <Text>{`Location ${currentLevel.locations.indexOf(targetObject) + 1} of ${currentLevel.locations.length}`}</Text>
           <Text>Guesses Remaining: {guessesRemaining}</Text>
           <Text>Difficulty: {difficultyLevel.name}</Text>
         </View>
@@ -222,8 +222,8 @@ export default function GameScreen() {
             alt={targetObject ? targetObject.name : "Your target location"}
             src={targetObject?.imageUrl}
           />
-          {targetObject?.positionInList ===
-            currentLevel.locations.length ? (
+          {currentLevel.locations.indexOf(targetObject) ===
+            currentLevel.locations.length - 1 ? (
             <Button
               title="Finish Game"
               color="#f194ff"
