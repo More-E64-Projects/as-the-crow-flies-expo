@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 const mongoUrl = process.env.DB_URL;
 
-const createRouter = require("./create_router.js");
+//const createRouter = require("./create_router.js");
 
 mongoose
   .connect(mongoUrl)
