@@ -26,3 +26,5 @@ app.get("/", (req, res) => {
 app.listen(9000, function () {
   console.log(`Listening on port ${this.address().port}`);
 });
+
+module.exports = app;
