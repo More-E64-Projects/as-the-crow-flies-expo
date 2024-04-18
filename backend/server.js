@@ -16,8 +16,10 @@ mongoose
   .catch(console.err);
 
 app.get("/", (req, res) => {
-  res.send({ status: "Server started" });
-  res.status(500).json({ status: 500, message: "Error" });
+  res.send({ status: "Server started" }).catch((err) => {
+    console.error(err);
+    res.status(500).json({ status: 500, error: err });
+  });
 });
 
 app.listen(9000, function () {
