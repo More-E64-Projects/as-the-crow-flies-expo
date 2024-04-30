@@ -77,31 +77,17 @@ export default function GameScreen() {
   useEffect(() => {
     if (guessedDistance < difficultyLevel.marginForError) {
       setLocationFound(true);
-      // WHEN LOCATION FOUND, ADD GUESSES REMAINING INTO A RUNNING TOTAL
-      // console.log("RUNNING TOTAL GUESSES REMAINING: " + totalGuessesRemaining);
-      // console.log("GUESSES REMAINING: " + (state?.difficultyLevel.guessesPerLocation - (counter)));
       setTotalGuessesRemaining(totalGuessesRemaining + (difficultyLevel.guessesPerLocation - (counter)));
     }
-
-  }, [guessedDistance]);
+    else if (counter >= difficultyLevel.guessesPerLocation) {
+      navigation.navigate("Lose" as never);
+  }}, [guessedDistance]);
 
   useEffect(() => {
 
     setTargetName(targetObject.name);
 
   }, [targetObject]);
-
-  if (
-    counter >= difficultyLevel.guessesPerLocation
-  ) {
-    return (
-      <SafeAreaView>
-        <Text style={{ textAlign: "center" }}>YOU LOSE!</Text>
-        <Text style={{ textAlign: "center" }}>SCORE: {score}</Text>
-        <Button title="Try again" onPress={() => DevSettings.reload()}></Button>
-      </SafeAreaView>
-    );
-  }
 
   const calculateDistance = (
     lat1: number,
