@@ -5,7 +5,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { AppContext } from "../AppContext";
 
 function WinScreen() {
-  const state = useContext(AppContext);
+  const contextValue = useContext(AppContext);
+  if (!contextValue) {
+    return null;
+  }
+
+  const {
+    score,
+  } = contextValue;
 
   const navigation = useNavigation();
 
@@ -37,9 +44,9 @@ function WinScreen() {
       <View>
         {/* Showing score output FOR DEBUGGING, probably will only show star rating in future */}
         <Text style={styles.gameInfo}>
-          SCORE: {parseFloat(state?.score * 100).toFixed(0)}%
+          SCORE: {parseFloat((score * 100).toFixed(0).toString())}%
         </Text>
-        <Text style={styles.gameInfo}> {getStarRating(state?.score)}</Text>
+        <Text style={styles.gameInfo}> {getStarRating(score)}</Text>
         <Text style={styles.gameInfo}>
           Good Job! ...unless you got one star!
         </Text>
@@ -63,50 +70,50 @@ function WinScreen() {
 export default WinScreen;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'space-around',
-        backgroundColor: '#ebfbee',
-    },
-    logoContainer: {
-        alignItems: 'center',
-    },
-    logo: {
-        fontSize: 50,
-        fontWeight: '500',
-        fontStyle: 'italic',
-        textAlign: 'center',
-        paddingTop: 40,
-        backgroundColor: 'darkblue',
-        color: 'green',
-        width: 150,
-        height: 150,
-        borderRadius: 75,
-        overflow: 'hidden', // Ensures the border radius is applied
-    },
-    heading: {
-        fontSize: 36,
-        textAlign: "center",
-        backgroundColor: 'green',
-        color: 'white',
-        opacity: 0.5,
-        marginTop: 16,
-        width: 250,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-    },
-    gameInfo: {
-        textAlign: 'center',
-    },
-    navButton: {
-        padding: 5,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        margin: 25,
-        borderRadius: 10,
-    },
-    navButtonText: {
-        fontSize: 28,
-        color: 'white'
-    }
+  container: {
+    flex: 1,
+    justifyContent: 'space-around',
+    backgroundColor: '#ebfbee',
+  },
+  logoContainer: {
+    alignItems: 'center',
+  },
+  logo: {
+    fontSize: 50,
+    fontWeight: '500',
+    fontStyle: 'italic',
+    textAlign: 'center',
+    paddingTop: 40,
+    backgroundColor: 'darkblue',
+    color: 'green',
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    overflow: 'hidden', // Ensures the border radius is applied
+  },
+  heading: {
+    fontSize: 36,
+    textAlign: "center",
+    backgroundColor: 'green',
+    color: 'white',
+    opacity: 0.5,
+    marginTop: 16,
+    width: 250,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  gameInfo: {
+    textAlign: 'center',
+  },
+  navButton: {
+    padding: 5,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    margin: 25,
+    borderRadius: 10,
+  },
+  navButtonText: {
+    fontSize: 28,
+    color: 'white'
+  }
 });
