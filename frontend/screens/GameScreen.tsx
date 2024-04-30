@@ -16,17 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import { AppContext } from "../AppContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const { width, height } = Dimensions.get("window");
 
-const ASPECT_RATIO = width / height;
-const LATITUDE_DELTA = 0.02;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const INITIAL_POSITION = {
-  latitude: 55.9425,
-  longitude: -3.2681,
-  latitudeDelta: LATITUDE_DELTA,
-  longitudeDelta: LONGITUDE_DELTA,
-};
 
 export default function GameScreen() {
 
@@ -57,6 +47,18 @@ export default function GameScreen() {
   const [totalGuessesRemaining, setTotalGuessesRemaining] = useState(0)
   const [locationFound, setLocationFound] = useState(false);
   const [gameOver, setGameOver] = useState(false);
+
+  const { width, height } = Dimensions.get("window");
+
+  const ASPECT_RATIO = width / height;
+  const LATITUDE_DELTA = currentLevel.zoomLevel;
+  const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+  const INITIAL_POSITION = {
+    latitude: currentLevel.startingPoint.latitude,
+    longitude: currentLevel.startingPoint.longitude,
+    latitudeDelta: LATITUDE_DELTA,
+    longitudeDelta: LONGITUDE_DELTA,
+  };
 
   const mapRef = useRef<MapView>(null);
 
@@ -185,7 +187,7 @@ export default function GameScreen() {
       </View>
       {!locationFound && (
         <View style={styles.searchContainer}>
-          <Text>{`Current Target: ${targetObject?.name}\nLocation ${targetObject.positionInList} of ${currentLevel.locations.length}`}</Text>
+          <Text>{`Current Target: ${targetObject?.name}\nLocation ${currentLevel.locations.indexOf(targetObject) + 1} of ${currentLevel.locations.length}`}</Text>
           <Text>Guesses Remaining: {guessesRemaining}</Text>
           <Text>Difficulty: {difficultyLevel.name}</Text>
         </View>
@@ -193,7 +195,7 @@ export default function GameScreen() {
       {message !== "" && (
         <View style={styles.searchContainer}>
           <Text>{message}</Text>
-          <Text>{`Location ${targetObject.positionInList} of ${currentLevel.locations.length}`}</Text>
+          <Text>{`Location ${currentLevel.locations.indexOf(targetObject) + 1} of ${currentLevel.locations.length}`}</Text>
           <Text>Guesses Remaining: {guessesRemaining}</Text>
           <Text>Difficulty: {difficultyLevel.name}</Text>
         </View>
@@ -206,8 +208,8 @@ export default function GameScreen() {
             alt={targetObject ? targetObject.name : "Your target location"}
             src={targetObject?.imageUrl}
           />
-          {targetObject?.positionInList ===
-            currentLevel.locations.length ? (
+          {currentLevel.locations.indexOf(targetObject) ===
+            currentLevel.locations.length - 1 ? (
             <Button
               title="Finish Game"
               color="#f194ff"
