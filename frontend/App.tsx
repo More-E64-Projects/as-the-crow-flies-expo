@@ -8,6 +8,7 @@ import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import WinScreen from './screens/WinScreen';
 import { useFonts } from 'expo-font';
+import LoseScreen from './screens/LoseScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,7 @@ function App() {
           <Stack.Screen name="Game" component={GameScreen} />
           <Stack.Screen name="Pause" component={PauseScreen} />
           <Stack.Screen name="Win" component={WinScreen} />
+          <Stack.Screen name="Lose" component={LoseScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </AppProvider>

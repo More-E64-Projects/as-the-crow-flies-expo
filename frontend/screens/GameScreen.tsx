@@ -92,13 +92,14 @@ export default function GameScreen() {
   if (
     counter >= difficultyLevel.guessesPerLocation
   ) {
-    return (
-      <SafeAreaView>
-        <Text style={{ textAlign: "center" }}>YOU LOSE!</Text>
-        <Text style={{ textAlign: "center" }}>SCORE: {score}</Text>
-        <Button title="Try again" onPress={() => DevSettings.reload()}></Button>
-      </SafeAreaView>
-    );
+    navigation.navigate("Lose" as never);
+    // return (
+    //   <SafeAreaView>
+    //     <Text style={{ textAlign: "center" }}>YOU LOSE!</Text>
+    //     <Text style={{ textAlign: "center" }}>SCORE: {score}</Text>
+    //     <Button title="Try again" onPress={() => DevSettings.reload()}></Button>
+    //   </SafeAreaView>
+    // );
   }
 
   const calculateDistance = (
