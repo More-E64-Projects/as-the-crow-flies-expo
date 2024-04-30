@@ -2,6 +2,10 @@
     "version": 2,
     "builds": [
       {
+        "src": "seeds.js",
+        "use": "@vercel/node"
+      },
+      {
         "src": "server.js",
         "use": "@vercel/node"
       }
